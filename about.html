@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Sarah — Experience Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1a1a1a;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .content-section {
+            padding: 4rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        ul {
+            list-style: none;
+            max-width: 700px;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            color: #555;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #1a1a1a;
+        }
+
+        .social-links a:hover {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .content-section {
+                padding: 2rem 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sarah</div>
+                <div class="nav-links">
+                    <a href="index.html">Work</a>
+                    <a href="about.html">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <div class="container">
+            <h1>About</h1>
+
+            <p>I'm an experience designer passionate about creating digital products that are intuitive, accessible, and beautiful. With over 8 years of experience, I've worked with startups and enterprises across healthcare, fintech, e-commerce, and education sectors.</p>
+
+            <p>My approach combines rigorous user research, strategic thinking, and meticulous design execution. I believe the best experiences are invisible—they anticipate user needs and guide people effortlessly toward their goals.</p>
+
+            <h2>Experience</h2>
+            <ul>
+                <li>Senior Experience Designer at Tech Company (2022–Present)</li>
+                <li>UX/UI Designer at Design Studio (2019–2022)</li>
+                <li>Product Designer at Startup (2017–2019)</li>
+                <li>Design Assistant at Agency (2015–2017)</li>
+            </ul>
+
+            <h2>Skills & Expertise</h2>
+            <div class="skills">
+                <span class="skill-tag">User Research</span>
+                <span class="skill-tag">Wireframing</span>
+                <span class="skill-tag">Prototyping</span>
+                <span class="skill-tag">UI Design</span>
+                <span class="skill-tag">Accessibility</span>
+                <span class="skill-tag">Information Architecture</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Design Systems</span>
+                <span class="skill-tag">Usability Testing</span>
+                <span class="skill-tag">Analytics</span>
+            </div>
+
+            <h2>Education</h2>
+            <p>Bachelor of Fine Arts in Graphic Design, State University</p>
+
+            <h2>Let's Connect</h2>
+            <p>I'm always interested in discussing new projects, creative ideas, and potential collaborations. Feel free to reach out.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:sarah@example.com">Email</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://dribbble.com" target="_blank">Dribbble</a>
+            </div>
+            <p>&copy; 2026 Sarah. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

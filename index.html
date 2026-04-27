@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah — Experience Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1a1a1a;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .hero {
+            padding: 4rem 2rem;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin-top: 2rem;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .projects-section {
+            padding: 4rem 2rem;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            border: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .project-meta span {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid #e5e5e5;
+            border-radius: 2px;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #1a1a1a;
+        }
+
+        .social-links a:hover {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .projects-section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sarah</div>
+                <div class="nav-links">
+                    <a href="index.html">Work</a>
+                    <a href="about.html">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Sarah</h1>
+            <p class="subtitle">Experience Designer</p>
+            <p class="bio">I design thoughtful, human-centered digital experiences. With a focus on usability and elegance, I help organizations create products and services that people love to use.</p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Selected Work</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <h3>Healthcare Platform Redesign</h3>
+                    <p>Redesigned patient portal to improve appointment booking and medical record access, reducing task completion time by 40%.</p>
+                    <div class="project-meta">
+                        <span>UX Design</span>
+                        <span>Research</span>
+                        <span>Healthcare</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <h3>E-Commerce Journey Optimization</h3>
+                    <p>Simplified checkout flow through user testing and behavioral analysis, resulting in 25% increase in conversion rate.</p>
+                    <div class="project-meta">
+                        <span>UX/UI Design</span>
+                        <span>Analytics</span>
+                        <span>E-Commerce</span>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <h3>Financial App Mobile Experience</h3>
+                    <p>Created intuitive mobile interface for personal finance management with emphasis on clarity and accessibility.</p>
+                    <div class="project-meta">
+                        <span>Mobile Design</span>
+                        <span>Accessibility</span>
+                        <span>FinTech</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:sarah@example.com">Email</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://dribbble.com" target="_blank">Dribbble</a>
+            </div>
+            <p>&copy; 2026 Sarah. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

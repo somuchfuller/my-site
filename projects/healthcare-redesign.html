@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Platform Redesign — Sarah</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+
+        header {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #1a1a1a;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .back-link:hover {
+            color: #1a1a1a;
+        }
+
+        .content-section {
+            padding: 2rem 2rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        ul {
+            list-style: none;
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            color: #555;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: #f5f5f5;
+            border: 1px solid #e5e5e5;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #1a1a1a;
+        }
+
+        .social-links a:hover {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .content-section {
+                padding: 1rem 1rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .image-placeholder {
+                height: 250px;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sarah</div>
+                <div class="nav-links">
+                    <a href="../index.html">Work</a>
+                    <a href="../about.html">About</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <div class="container">
+            <a href="../index.html" class="back-link">← Back to Work</a>
+
+            <h1>Healthcare Platform Redesign</h1>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span>Lead UX/UI Designer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span>6 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Team</span>
+                    <span>2 designers, 1 researcher, 4 developers</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Sector</span>
+                    <span>Healthcare</span>
+                </div>
+            </div>
+
+            <h2>Overview</h2>
+            <p>A leading healthcare provider approached us to redesign their patient portal. Users were struggling with appointment booking and accessing medical records, leading to poor adoption and patient frustration. Our goal was to create an intuitive experience that reduced friction and improved engagement.</p>
+
+            <h2>The Challenge</h2>
+            <p>The existing platform had:</p>
+            <ul>
+                <li>Complex navigation with unclear information hierarchy</li>
+                <li>Confusing appointment booking flow requiring 8+ steps</li>
+                <li>Poor mobile experience with unresponsive design</li>
+                <li>Accessibility issues preventing some users from accessing critical information</li>
+                <li>Low user adoption rates (only 30% of eligible patients)</li>
+            </ul>
+
+            <div class="image-placeholder">Wireframes & Prototypes</div>
+
+            <h2>Research & Discovery</h2>
+            <p>We conducted extensive user research including:</p>
+            <ul>
+                <li>12 in-depth user interviews with patients and caregivers</li>
+                <li>Usability testing of the existing platform</li>
+                <li>Analytics review of user behavior and drop-off points</li>
+                <li>Accessibility audit identifying barriers for users with disabilities</li>
+            </ul>
+
+            <p>Key findings revealed that users wanted a streamlined experience focused on three primary tasks: booking appointments, accessing recent visits, and managing prescriptions. Secondary features were creating cognitive overload.</p>
+
+            <h2>Design Solution</h2>
+            <p>We redesigned the interface with a mobile-first approach, emphasizing clarity and task completion:</p>
+            <ul>
+                <li><strong>Simplified navigation:</strong> Reduced main menu to 4 key sections</li>
+                <li><strong>Streamlined booking:</strong> 3-step appointment booking instead of 8</li>
+                <li><strong>Progressive disclosure:</strong> Showed relevant information based on user context</li>
+                <li><strong>Accessibility first:</strong> WCAG 2.1 AA compliance across all interfaces</li>
+                <li><strong>Responsive design:</strong> Seamless experience across all device sizes</li>
+            </ul>
+
+            <div class="image-placeholder">Final Design Screens</div>
+
+            <h2>Results</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">40%</div>
+                    <div class="metric-label">Reduction in task completion time</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">68%</div>
+                    <div class="metric-label">Increase in user adoption</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">3.2x</div>
+                    <div class="metric-label">Monthly active users</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">92%</div>
+                    <div class="metric-label">User satisfaction score</div>
+                </div>
+            </div>
+
+            <h2>Key Learnings</h2>
+            <ul>
+                <li>Simplification through constraint drives better outcomes than feature addition</li>
+                <li>Accessibility improvements benefit all users, not just those with disabilities</li>
+                <li>Mobile-first design doesn't mean small—it means prioritized</li>
+                <li>Continuous user testing validates assumptions and guides iteration</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="mailto:sarah@example.com">Email</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://dribbble.com" target="_blank">Dribbble</a>
+            </div>
+            <p>&copy; 2026 Sarah. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
