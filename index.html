@@ -15,12 +15,12 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
-            background: #ffffff;
+            background: #fff4e5;
         }
 
         header {
             padding: 3rem 2rem;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid #80480c;
         }
 
         .container {
@@ -63,8 +63,13 @@
             text-align: left;
         }
 
+        h1,
+        h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
         h1 {
-            font-size: 2.5rem;
+            font-size: 5rem;
             font-weight: 300;
             margin-bottom: 0.5rem;
             letter-spacing: -0.5px;
@@ -106,15 +111,16 @@
         }
 
         .project-card {
-            border: 1px solid #e5e5e5;
+            border: 1px solid #80480c;
             padding: 1.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
+            background: #fff8ee;
         }
 
         .project-card:hover {
-            border-color: #1a1a1a;
-            background: #fafafa;
+            border-color: #80480c;
+            background: #fff1d8;
         }
 
         .project-card h3 {
@@ -139,13 +145,18 @@
 
         .project-meta span {
             padding: 0.25rem 0.75rem;
-            border: 1px solid #e5e5e5;
+            border: 1px solid #80480c;
             border-radius: 2px;
+        }
+
+        .projects-section {
+            padding: 4rem 2rem;
+            border-top: 1px solid #80480c;
         }
 
         footer {
             padding: 3rem 2rem;
-            border-top: 1px solid #e5e5e5;
+            border-top: 1px solid #80480c;
             text-align: center;
             color: #999;
             font-size: 0.9rem;
@@ -167,15 +178,16 @@
         }
 
         .weather-widget {
-            border: 1px solid #e5e5e5;
+            border: 1px solid #80480c;
             padding: 1.5rem;
-            border-radius: 4px;
-            background: #fafafa;
-            max-width: 300px;
-            margin-top: 2rem;
+            border-radius: 8px;
+            background: #fff8ee;
+            max-width: 100%;
+            margin: 2rem auto 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
         }
 
@@ -213,6 +225,49 @@
         .weather-error {
             color: #666;
             font-size: 0.9rem;
+        }
+
+        .forecast-list {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0.75rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .forecast-day {
+            padding: 0.75rem;
+            border: 1px solid #80480c;
+            border-radius: 6px;
+            background: #fff4e5;
+            text-align: center;
+            color: #1a1a1a;
+            font-size: 0.85rem;
+        }
+
+        .forecast-day strong {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .forecast-day span {
+            display: block;
+            margin-top: 0.25rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .forecast-list {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .forecast-list {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -258,6 +313,7 @@
                     <h3>Current Weather</h3>
                     <div class="weather-loading">Getting your location...</div>
                 </div>
+                <div class="forecast-list" id="forecastList"></div>
             </div>
         </div>
     </header>
@@ -394,28 +450,55 @@
         }
 
         function fetchWeatherData(latitude, longitude) {
-            const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,relative_humidity&timezone=auto`;
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
 
             fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
-                    const current = data.current;
-                    const tempC = current.temperature_2m;
+                    const current = data.current_weather;
+                    const daily = data.daily;
+                    const tempC = current.temperature;
                     const tempF = Math.round((tempC * 9 / 5) + 32);
-                    const weatherCode = current.weather_code;
+                    const weatherCode = current.weathercode;
                     const emoji = weatherEmojis[weatherCode] || '🌡️';
                     const description = weatherDescriptions[weatherCode] || 'Unknown';
+                    const forecastHtml = buildForecast(daily);
 
-                    updateWeatherWidget(emoji, `${tempF}°F`, description);
+                    updateWeatherWidget(emoji, `${tempF}°F`, description, forecastHtml);
                 })
                 .catch((error) => {
-                    updateWeatherWidget('🌍', 'Weather unavailable', '');
+                    updateWeatherWidget('🌍', 'Weather unavailable', '', '');
                 });
         }
 
-        function updateWeatherWidget(emoji, temp, condition) {
+        function buildForecast(daily) {
+            if (!daily || !daily.time || !daily.weathercode) {
+                return '<div class="weather-error">Forecast unavailable</div>';
+            }
+
+            const items = daily.time.slice(0, 5).map((date, index) => {
+                const code = daily.weathercode[index];
+                const max = Math.round(daily.temperature_2m_max[index]);
+                const min = Math.round(daily.temperature_2m_min[index]);
+                const label = index === 0 ? 'Today' : new Date(date).toLocaleDateString(undefined, { weekday: 'short' });
+                const icon = weatherEmojis[code] || '🌡️';
+
+                return `
+                    <div class="forecast-day">
+                        <strong>${label}</strong>
+                        <div>${icon}</div>
+                        <span>${min}° / ${max}°</span>
+                    </div>
+                `;
+            });
+
+            return items.join('');
+        }
+
+        function updateWeatherWidget(emoji, temp, condition, forecastHtml = '') {
             const widget = document.getElementById('weatherWidget');
             const icon = document.getElementById('weatherIcon');
+            const forecast = document.getElementById('forecastList');
 
             icon.textContent = emoji;
 
@@ -425,6 +508,12 @@
                 <div class="weather-temp">${temp}</div>
                 <div class="weather-condition">${condition}</div>
             `;
+
+            if (forecastHtml) {
+                forecast.innerHTML = forecastHtml;
+            } else {
+                forecast.innerHTML = '';
+            }
         }
 
         // Initialize weather widget when page loads
