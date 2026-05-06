@@ -166,6 +166,55 @@
             color: #666;
         }
 
+        .weather-widget {
+            border: 1px solid #e5e5e5;
+            padding: 1.5rem;
+            border-radius: 4px;
+            background: #fafafa;
+            max-width: 300px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .weather-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        .weather-info h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .weather-temp {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .weather-condition {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .weather-loading {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .weather-error {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -186,6 +235,10 @@
             .projects-section {
                 padding: 2rem 1rem;
             }
+
+            .weather-widget {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -199,6 +252,13 @@
                     <a href="about.html">About</a>
                 </div>
             </nav>
+            <div class="weather-widget" id="weatherWidget">
+                <div class="weather-icon" id="weatherIcon">🌍</div>
+                <div class="weather-info">
+                    <h3>Current Weather</h3>
+                    <div class="weather-loading">Getting your location...</div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -257,5 +317,118 @@
             <p>&copy; 2026 Sarah. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Weather code to emoji mapping
+        const weatherEmojis = {
+            0: '☀️',      // Clear sky
+            1: '🌤️',     // Mainly clear
+            2: '⛅',     // Partly cloudy
+            3: '☁️',      // Overcast
+            45: '🌫️',    // Foggy
+            48: '🌫️',    // Foggy
+            51: '🌦️',    // Light drizzle
+            53: '🌦️',    // Moderate drizzle
+            55: '🌧️',    // Dense drizzle
+            61: '🌧️',    // Slight rain
+            63: '🌧️',    // Moderate rain
+            65: '⛈️',    // Heavy rain
+            71: '❄️',     // Slight snow
+            73: '❄️',     // Moderate snow
+            75: '❄️',     // Heavy snow
+            77: '❄️',     // Snow grains
+            80: '🌧️',    // Slight rain showers
+            81: '⛈️',    // Moderate rain showers
+            82: '⛈️',    // Violent rain showers
+            85: '❄️',     // Slight snow showers
+            86: '❄️',     // Heavy snow showers
+            95: '⛈️',    // Thunderstorm
+            96: '⛈️',    // Thunderstorm with hail
+            99: '⛈️'     // Thunderstorm with hail
+        };
+
+        const weatherDescriptions = {
+            0: 'Clear sky',
+            1: 'Mainly clear',
+            2: 'Partly cloudy',
+            3: 'Overcast',
+            45: 'Foggy',
+            48: 'Foggy',
+            51: 'Drizzle',
+            53: 'Drizzle',
+            55: 'Heavy drizzle',
+            61: 'Rainy',
+            63: 'Rainy',
+            65: 'Heavy rain',
+            71: 'Snowy',
+            73: 'Snowy',
+            75: 'Heavy snow',
+            77: 'Snow grains',
+            80: 'Rain showers',
+            81: 'Rain showers',
+            82: 'Heavy rain showers',
+            85: 'Snow showers',
+            86: 'Heavy snow showers',
+            95: 'Thunderstorm',
+            96: 'Thunderstorm',
+            99: 'Thunderstorm'
+        };
+
+        function getWeather() {
+            // Check if geolocation is available
+            if (!navigator.geolocation) {
+                updateWeatherWidget('🌍', 'Location not available', '');
+                return;
+            }
+
+            // Get user's location
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    fetchWeatherData(latitude, longitude);
+                },
+                (error) => {
+                    updateWeatherWidget('🌍', 'Enable location', 'to see your weather');
+                }
+            );
+        }
+
+        function fetchWeatherData(latitude, longitude) {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,relative_humidity&timezone=auto`;
+
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    const current = data.current;
+                    const tempC = current.temperature_2m;
+                    const tempF = Math.round((tempC * 9 / 5) + 32);
+                    const weatherCode = current.weather_code;
+                    const emoji = weatherEmojis[weatherCode] || '🌡️';
+                    const description = weatherDescriptions[weatherCode] || 'Unknown';
+
+                    updateWeatherWidget(emoji, `${tempF}°F`, description);
+                })
+                .catch((error) => {
+                    updateWeatherWidget('🌍', 'Weather unavailable', '');
+                });
+        }
+
+        function updateWeatherWidget(emoji, temp, condition) {
+            const widget = document.getElementById('weatherWidget');
+            const icon = document.getElementById('weatherIcon');
+
+            icon.textContent = emoji;
+
+            const info = widget.querySelector('.weather-info');
+            info.innerHTML = `
+                <h3>Current Weather</h3>
+                <div class="weather-temp">${temp}</div>
+                <div class="weather-condition">${condition}</div>
+            `;
+        }
+
+        // Initialize weather widget when page loads
+        window.addEventListener('load', getWeather);
+    </script>
 </body>
 </html>
