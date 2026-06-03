@@ -148,6 +148,40 @@ h1 {
     border-top: 1px solid #80480c;
 }
 
+.about-section {
+    padding: 4rem 2rem;
+    border-top: 1px solid #80480c;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.about-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border: 1px dashed #80480c;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #fff8ee 0%, #fff1d8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #80480c;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.about-text {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.9;
+    max-width: 62ch;
+}
+
 footer {
     padding: 3rem 2rem;
     border-top: 1px solid #80480c;
@@ -283,6 +317,18 @@ footer {
 
     .projects-section {
         padding: 2rem 1rem;
+    }
+
+    .about-section {
+        padding: 2rem 1rem;
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-photo {
+        max-width: 280px;
     }
 
     .weather-widget {

@@ -73,7 +73,7 @@ function getWeather() {
 }
 
 function fetchWeatherData(latitude, longitude) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temp_unit_2m_max,temperature_2m_min,weathercode&timezone=auto`;
 
     fetch(url)
         .then((response) => response.json())
