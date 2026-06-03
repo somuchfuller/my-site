@@ -56,6 +56,17 @@ nav a:hover {
     text-align: left;
 }
 
+.hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 2rem;
+    align-items: start;
+}
+
+.hero-copy {
+    min-width: 0;
+}
+
 h1,
 h2 {
     font-family: Georgia, 'Times New Roman', serif;
@@ -161,18 +172,22 @@ h1 {
 }
 
 .about-photo {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    border: 1px dashed #80480c;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #fff8ee 0%, #fff1d8 100%);
+    width: 280px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #80480c;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff1d8;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #80480c;
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+}
+
+.about-photo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .about-text {
@@ -211,7 +226,7 @@ footer {
     border-radius: 8px;
     background: #fff8ee;
     max-width: 100%;
-    margin: 2rem auto 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -315,6 +330,10 @@ footer {
         padding: 2rem 1rem;
     }
 
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
     .projects-section {
         padding: 2rem 1rem;
     }
@@ -328,7 +347,7 @@ footer {
     }
 
     .about-photo {
-        max-width: 280px;
+        width: min(280px, 100%);
     }
 
     .weather-widget {
