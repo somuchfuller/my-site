@@ -14,6 +14,7 @@
                 <div class="nav-links">
                     <a href="index.html">Work</a>
                     <a href="#about">About</a>
+                    <a href="mailto:sarah.fuller@slalom.com" class="contact-btn">Contact Us</a>
                 </div>
             </nav>
         </div>
@@ -42,8 +43,12 @@
     <section class="projects-section">
         <div class="container">
             <h2 class="section-title">Selected Work</h2>
-            <div class="projects-grid">
-                <article class="project-card">
+            <div class="project-filters" role="tablist" aria-label="Project categories">
+                <button class="filter-btn is-active" type="button" data-filter="experience" aria-pressed="true">Experience Design</button>
+                <button class="filter-btn" type="button" data-filter="advertising" aria-pressed="false">Advertising Work</button>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <article class="project-card" data-category="experience">
                     <h3>Healthcare Platform Redesign</h3>
                     <p>Redesigned patient portal to improve appointment booking and medical record access, reducing task completion time by 40%.</p>
                     <div class="project-meta">
@@ -53,7 +58,7 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="experience">
                     <h3>E-Commerce Journey Optimization</h3>
                     <p>Simplified checkout flow through user testing and behavioral analysis, resulting in 25% increase in conversion rate.</p>
                     <div class="project-meta">
@@ -63,13 +68,43 @@
                     </div>
                 </article>
 
-                <article class="project-card">
+                <article class="project-card" data-category="experience">
                     <h3>Financial App Mobile Experience</h3>
                     <p>Created intuitive mobile interface for personal finance management with emphasis on clarity and accessibility.</p>
                     <div class="project-meta">
                         <span>Mobile Design</span>
                         <span>Accessibility</span>
                         <span>FinTech</span>
+                    </div>
+                </article>
+
+                <article class="project-card is-hidden" data-category="advertising">
+                    <h3>Global Beverage Brand Campaign</h3>
+                    <p>Led art direction and digital storytelling for a multi-market campaign that increased audience engagement across social channels.</p>
+                    <div class="project-meta">
+                        <span>Creative Direction</span>
+                        <span>Campaign Design</span>
+                        <span>Advertising</span>
+                    </div>
+                </article>
+
+                <article class="project-card is-hidden" data-category="advertising">
+                    <h3>Retail Holiday Media Launch</h3>
+                    <p>Designed integrated ad experiences for seasonal promotions, improving click-through performance and conversion quality.</p>
+                    <div class="project-meta">
+                        <span>Digital Ads</span>
+                        <span>Visual Design</span>
+                        <span>Retail</span>
+                    </div>
+                </article>
+
+                <article class="project-card is-hidden" data-category="advertising">
+                    <h3>Automotive Brand Repositioning</h3>
+                    <p>Created a refreshed paid-media visual system and messaging framework to strengthen brand perception among new audiences.</p>
+                    <div class="project-meta">
+                        <span>Brand Strategy</span>
+                        <span>Ad Creative</span>
+                        <span>Automotive</span>
                     </div>
                 </article>
             </div>
@@ -83,7 +118,7 @@
                 <div class="about-photo">
                     <img src="FullSize.png" alt="Portrait of Sarah" class="about-photo-image">
                 </div>
-                <p class="about-text">After extablishing my career in digital advertising, I made the shift to consulting, now working as a multi-faceted Experience Designer with 18+ years of experience. My background in user experience strategy, UX/UI design, visual designa nd creatiove direction allows me to see a project from conception to finished product, working as an essential palyer throughout the process.</p>
+                <p class="about-text">After establishing my career in digital advertising, I made the shift to consulting, now working as a multi-faceted Experience Designer with 18+ years of experience. My background in user experience strategy, UX/UI design, visual design and creative direction allows me to see a project from conception to finished product, working as an essential player throughout the process.</p>
             </div>
         </div>
     </section>

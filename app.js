@@ -139,5 +139,68 @@ function updateWeatherWidget(emoji, temp, condition, forecastHtml = '') {
     }
 }
 
+function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card[data-category]');
+    const transitionDuration = 220;
+    let transitionTimer;
+
+    if (!filterButtons.length || !projectCards.length) {
+        return;
+    }
+
+    const applyFilter = (selectedCategory, animate = true) => {
+        filterButtons.forEach((button) => {
+            const isActive = button.dataset.filter === selectedCategory;
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        if (!animate) {
+            projectCards.forEach((card) => {
+                const matchesCategory = card.dataset.category === selectedCategory;
+                card.classList.toggle('is-hidden', !matchesCategory);
+                card.classList.remove('is-fading');
+            });
+            return;
+        }
+
+        const visibleCards = Array.from(projectCards).filter((card) => !card.classList.contains('is-hidden'));
+        visibleCards.forEach((card) => card.classList.add('is-fading'));
+
+        window.clearTimeout(transitionTimer);
+        transitionTimer = window.setTimeout(() => {
+            projectCards.forEach((card) => {
+                const matchesCategory = card.dataset.category === selectedCategory;
+
+                if (matchesCategory) {
+                    card.classList.remove('is-hidden');
+                    card.classList.add('is-fading');
+                } else {
+                    card.classList.add('is-hidden');
+                    card.classList.remove('is-fading');
+                }
+            });
+
+            requestAnimationFrame(() => {
+                projectCards.forEach((card) => {
+                    if (card.dataset.category === selectedCategory) {
+                        card.classList.remove('is-fading');
+                    }
+                });
+            });
+        }, transitionDuration);
+    };
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            applyFilter(button.dataset.filter);
+        });
+    });
+
+    applyFilter('experience', false);
+}
+
 // Initialize weather widget when page loads
 window.addEventListener('load', getWeather);
+window.addEventListener('DOMContentLoaded', initProjectFilters);
