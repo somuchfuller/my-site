@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
-            background: #fff4e5;
+            background: #ffffff;
         }
 
         header {
@@ -157,6 +157,72 @@
             border-radius: 4px;
         }
 
+        .wireframes-chart {
+            background: #ffffff;
+            border: 1px solid #80480c;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            padding: 1.25rem;
+            color: #1a1a1a;
+            height: auto;
+            min-height: 320px;
+        }
+
+        .chart-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #80480c;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .chart-grid {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 0.75rem;
+            border-left: 1px solid #d8d8d8;
+            border-bottom: 1px solid #d8d8d8;
+            padding: 0.75rem 0.5rem 0.5rem;
+            min-height: 210px;
+            margin-bottom: 0.75rem;
+        }
+
+        .chart-bar-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .chart-bar {
+            width: 100%;
+            max-width: 54px;
+            height: var(--bar-height);
+            background: #80480c;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .chart-value {
+            font-size: 0.8rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .chart-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .chart-caption {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
         .metrics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -291,7 +357,37 @@
                 <li>Low user adoption rates (only 30% of eligible patients)</li>
             </ul>
 
-            <div class="image-placeholder">Wireframes & Prototypes</div>
+            <div class="image-placeholder wireframes-chart" role="img" aria-label="Bar chart showing fake usability test completion rates by sprint">
+                <p class="chart-title">Wireframes & Prototypes Test Snapshot</p>
+                <div class="chart-grid">
+                    <div class="chart-bar-wrap">
+                        <div class="chart-value">52%</div>
+                        <div class="chart-bar" style="--bar-height: 78px;"></div>
+                        <div class="chart-label">Sprint 1</div>
+                    </div>
+                    <div class="chart-bar-wrap">
+                        <div class="chart-value">64%</div>
+                        <div class="chart-bar" style="--bar-height: 96px;"></div>
+                        <div class="chart-label">Sprint 2</div>
+                    </div>
+                    <div class="chart-bar-wrap">
+                        <div class="chart-value">73%</div>
+                        <div class="chart-bar" style="--bar-height: 110px;"></div>
+                        <div class="chart-label">Sprint 3</div>
+                    </div>
+                    <div class="chart-bar-wrap">
+                        <div class="chart-value">81%</div>
+                        <div class="chart-bar" style="--bar-height: 122px;"></div>
+                        <div class="chart-label">Sprint 4</div>
+                    </div>
+                    <div class="chart-bar-wrap">
+                        <div class="chart-value">89%</div>
+                        <div class="chart-bar" style="--bar-height: 134px;"></div>
+                        <div class="chart-label">Sprint 5</div>
+                    </div>
+                </div>
+                <p class="chart-caption">Fake data: usability test task-completion rates increased across iterative prototype sprints.</p>
+            </div>
 
             <h2>Research & Discovery</h2>
             <p>We conducted extensive user research including:</p>
