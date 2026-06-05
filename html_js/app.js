@@ -73,52 +73,26 @@ function getWeather() {
 }
 
 function fetchWeatherData(latitude, longitude) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=auto`;
 
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
             const current = data.current_weather;
-            const daily = data.daily;
             const tempC = current.temperature;
             const tempF = Math.round((tempC * 9 / 5) + 32);
             const weatherCode = current.weathercode;
             const emoji = weatherEmojis[weatherCode] || '🌡️';
             const description = weatherDescriptions[weatherCode] || 'Unknown';
-            const forecastHtml = buildForecast(daily);
 
-            updateWeatherWidget(emoji, `${tempF}°F`, description, forecastHtml);
+            updateWeatherWidget(emoji, `${tempF}°F`, description);
         })
         .catch((error) => {
-            updateWeatherWidget('🌍', 'Weather unavailable', '', '');
+            updateWeatherWidget('🌍', 'Weather unavailable', '');
         });
 }
 
-function buildForecast(daily) {
-    if (!daily || !daily.time || !daily.weathercode) {
-        return '<div class="weather-error">Forecast unavailable</div>';
-    }
-
-    const items = daily.time.slice(0, 5).map((date, index) => {
-        const code = daily.weathercode[index];
-        const max = Math.round(daily.temperature_2m_max[index]);
-        const min = Math.round(daily.temperature_2m_min[index]);
-        const label = index === 0 ? 'Today' : new Date(date).toLocaleDateString(undefined, { weekday: 'short' });
-        const icon = weatherEmojis[code] || '🌡️';
-
-        return `
-            <div class="forecast-day">
-                <strong>${label}</strong>
-                <div>${icon}</div>
-                <span>${min}° / ${max}°</span>
-            </div>
-        `;
-    });
-
-    return items.join('');
-}
-
-function updateWeatherWidget(emoji, temp, condition, forecastHtml = '') {
+function updateWeatherWidget(emoji, temp, condition) {
     const widget = document.getElementById('weatherWidget');
     const icon = document.getElementById('weatherIcon');
     const forecast = document.getElementById('forecastList');
@@ -132,11 +106,31 @@ function updateWeatherWidget(emoji, temp, condition, forecastHtml = '') {
         <div class="weather-condition">${condition}</div>
     `;
 
-    if (forecastHtml) {
-        forecast.innerHTML = forecastHtml;
-    } else {
+    if (forecast) {
         forecast.innerHTML = '';
     }
+}
+
+function initProjectLinks() {
+    const linkedCards = document.querySelectorAll('.project-card[data-href]');
+
+    linkedCards.forEach((card) => {
+        const destination = card.dataset.href;
+        if (!destination) {
+            return;
+        }
+
+        card.addEventListener('click', () => {
+            window.location.href = destination;
+        });
+
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                window.location.href = destination;
+            }
+        });
+    });
 }
 
 function initProjectFilters() {
@@ -204,3 +198,4 @@ function initProjectFilters() {
 // Initialize weather widget when page loads
 window.addEventListener('load', getWeather);
 window.addEventListener('DOMContentLoaded', initProjectFilters);
+window.addEventListener('DOMContentLoaded', initProjectLinks);
